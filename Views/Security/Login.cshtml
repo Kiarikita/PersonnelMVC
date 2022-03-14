@@ -1,0 +1,52 @@
+﻿@model PersonnelMVC.Models.EntityFramework.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <!------ Include the above in your HEAD tag ---------->
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    
+
+    <div class="sidenav">
+        <div class="login-main-text">
+            <h2>Giriş<br> Yapın</h2>
+            <p>Giriş yapın ya da kayıt olun.</p>
+        </div>
+    </div>
+    <div class="main">
+
+        @using (Html.BeginForm("Login", "Security", FormMethod.Post))
+        {
+            <h5>@ViewBag.Message</h5>
+            <div class="col-md-6 col-sm-12">
+                <div class="login-form">
+                    <form>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Username)
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Kullanıcı Adı" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password)
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Şifre" })
+                        </div>
+                        <button type="submit" class="btn btn-success">Giriş Yap</button>
+                        @*<button type="submit" class="btn btn-secondary">Kayıt Ol</button>*@
+                    </form>
+                </div>
+            </div>
+        }
+
+    </div>
+</body>
+</html>

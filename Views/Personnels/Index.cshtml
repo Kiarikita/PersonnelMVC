@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PersonnelMVC.Models.EntityFramework.Personnel>
+@{
+    ViewBag.Title = "Personel Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<a class="btn btn-success mt-1" href="/personnels/create">Yeni Personel Ekle</a>*@
+@Html.ActionLink("Yeni Personel", "Create", null, new { @class = "btn btn-success mb-3 mt-1" })
+<h2>Personel Listesi</h2> @DateTime.Now
+
+<table class="table table-striped" id="tblPersonnels">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Departman</th>
+            <th>Maaş</th>
+            <th>Yaş</th>
+            <th>Doğum Tarihi</th>
+            <th>Cinsiyet</th>
+            <th>Medeni Hal</th>
+            <th>Güncelle</th>
+            @if (User.IsInRole("D"))
+            {
+                <th>Sil</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var personnel in Model)
+        {
+        <tr>
+            <td>@personnel.Name</td>
+            <td>@personnel.Surname</td>
+            <td>@personnel.Department.Name</td>
+            <td>@personnel.Salary</td>
+            <td>@(DateTime.Now.Year - personnel.Birthday.Value.Year)</td>
+            <td>@personnel.Birthday.Value.ToString("dd-MM-yyyy")</td>
+            <td>@(personnel.Gender == true ? "Kadın":"Erkek")</td>
+            <td>@(personnel.IsMarried == true ? "Evli" : "Bekar")</td>
+            <td>
+                @Html.ActionLink(linkText: "Güncelle",
+                             actionName: "Update",
+                             routeValues: new { id = personnel.ID },
+                             htmlAttributes: new { @class = "btn btn-warning" })
+            </td>
+            @if (User.IsInRole("D"))
+            {
+                <td>
+                    @*@Html.ActionLink(linkText: "Sil",
+                actionName: "Delete",
+                routeValues: new { id = personnel.ID },
+                htmlAttributes: new { @class = "btn btn-danger" })*@
+                    <a class="btn btn-danger btnDelPersonnel" data-id="@personnel.ID">Sil</a>
+                </td>
+
+            }
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.8.3.js"></script>
+}

@@ -1,0 +1,14 @@
+﻿@model PersonnelMVC.ViewModels.MessageViewModel
+
+@if (Model.Status)
+{
+    <div class="alert alert-success mt-1" role="alert">
+        @Model.Message <a href="@Model.Url">@Model.LinkText</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger mt-1" role="alert">
+        @Model.Message <a href="@Model.Url">@Model.LinkText</a>
+    </div>
+}

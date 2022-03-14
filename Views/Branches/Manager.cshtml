@@ -1,0 +1,26 @@
+﻿@model PersonnelMVC.Models.EntityFramework.Branch
+@{
+    ViewBag.Title = "Şube Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Branches", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    @Html.HiddenFor(m => m.ID)
+    <button class="btn btn-success mt-1" type="submit">Kaydet</button>
+}
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.8.0.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
+

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<PersonnelMVC.Models.EntityFramework.Personnel>
+<h1> Personel Listesi</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Doğum Tarihi</th>
+            <th>Maaş</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var per in Model)
+        {
+            <tr>
+                <td>@per.Name</td>
+                <td>@per.Surname</td>
+                <td>@per.Birthday.Value.ToShortDateString()</td>
+                <td>@per.Salary TL</td>
+            </tr>
+        }
+    </tbody>
+</table>

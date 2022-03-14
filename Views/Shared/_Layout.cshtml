@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html >
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Personel MVC - @ViewBag.Title</title>
+    @System.Web.Optimization.Styles.Render("~/bundles/css")
+</head>
+<body style="background-image: url(../../Content/hans-isaacson-3wyu5grLulY-unsplash.jpg); background-repeat: no-repeat;  background-attachment: scroll;">
+    @Html.Partial("_Navbar")
+    <div class="container mt-3 mb-5">
+        @RenderBody()
+    </div>
+
+    @System.Web.Optimization.Scripts.Render("~/bundles/scripts")
+    @RenderSection("scripts", false)
+    
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<PersonnelMVC.Models.EntityFramework.Branch>
+@{
+    ViewBag.Title = "Şube Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-success mt-1" href="/branches/create">Yeni Şube Ekle</a>
+<h2>Şube Listesi</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var branch in Model)
+        {
+            <tr>
+                <td>@branch.ID</td>
+                <td>@branch.Name</td>
+                <td><a class="btn btn-warning" href="/Branches/Update/@branch.ID">Güncelle</a></td>
+                <td><a class="btn btn-danger" href="/Branches/Delete/@branch.ID">Sil</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

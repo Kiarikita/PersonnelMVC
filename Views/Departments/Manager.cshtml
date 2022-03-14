@@ -1,0 +1,26 @@
+﻿@model PersonnelMVC.Models.EntityFramework.Department
+@{
+    ViewBag.Title = "Departman Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="message">
+
+</div>
+@using (Ajax.BeginForm("Save", "Departments", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "message"}))
+{
+    @Html.AntiForgeryToken() //domain kısmından direkt departman ekleme işlemi yapılmasın diye
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    @Html.HiddenFor(m => m.ID)
+    <button class="btn btn-success mt-1" type="submit">Kaydet</button>
+}
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.8.3.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

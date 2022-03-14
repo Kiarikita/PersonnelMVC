@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PersonnelMVC.Models.EntityFramework.Department>
+@{
+    ViewBag.Title = "Departman Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-success mt-1 mb-3" href="/departments/create">Yeni Departman Ekle</a>
+<h2>Departman Listesi</h2>
+
+<table class="table table-striped" id="tblDepartments">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Güncelle</th>
+            @if (User.IsInRole("D"))
+            {
+                <th>Sil</th>
+            }
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model)
+        {
+        <tr>
+            <td>@department.ID</td>
+            <td>@department.Name</td>
+            <td><a class="btn btn-warning" href="/Departments/Update/@department.ID">Güncelle</a></td>
+            @if(User.IsInRole("D"))
+            {
+                <td><a class="btn btn-danger btnDelDepartment" data-id="@department.ID">Sil</a></td>
+            }
+            <td>@Ajax.ActionLink("Personelleri Göster", "ListPersonnel", 
+               new { id = department.ID }, new AjaxOptions { HttpMethod= "GET", UpdateTargetId= "personnels"}, new { @class = "btn btn-primary" })</td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div id="personnels"></div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.8.3.js"></script>
+}
